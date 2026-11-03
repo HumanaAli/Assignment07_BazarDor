@@ -1,6 +1,9 @@
 
 export const instant = false;
 
+import Image from "next/image";
+import Link from "next/link";
+import Navbar from "../../components/Navbar";
 import { getProducts, getCategories } from "@/lib/products";
 
 export default async function Home() {
@@ -11,20 +14,45 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-green-50">
-      <header className="bg-green-700 px-6 py-4 text-white">
-        <h1 className="text-2xl font-bold">Bazar Dor</h1>
-        <p className="text-sm">Your everyday grocery marketplace</p>
-      </header>
+      <Navbar />
 
-      <section className="mx-auto max-w-6xl px-6 py-12">
-        <h2 className="text-3xl font-bold text-gray-900">
-          Fresh groceries, fair prices
-        </h2>
-        <p className="mt-3 text-gray-600">
-          Find the everyday essentials you need in one place.
-        </p>
+      {/* Hero Section */}
+      <section className="mx-auto grid max-w-6xl items-center gap-8 px-6 py-12 md:grid-cols-2">
+        <div>
+          <p className="font-semibold text-green-700">
+            Welcome to Bazar Dor
+          </p>
 
-        <h3 className="mt-10 text-xl font-semibold text-gray-900">
+          <h2 className="mt-3 text-4xl font-bold leading-tight text-gray-900">
+            Fresh groceries, fair prices.
+          </h2>
+
+          <p className="mt-4 text-lg text-gray-600">
+            Know today's market prices and shop smarter with Bazar Dor.
+          </p>
+
+          <Link
+            href="#products"
+            className="mt-7 inline-block rounded-lg bg-green-700 px-6 py-3 font-semibold text-white hover:bg-green-800"
+          >
+            Explore Products
+          </Link>
+        </div>
+
+        <div className="relative h-64 w-full overflow-hidden rounded-2xl md:h-80">
+          <Image
+            src="/bazar-hero.png"
+            alt="Fresh groceries"
+            fill
+            priority
+            className="object-contain"
+          />
+        </div>
+      </section>
+
+      {/* Categories */}
+      <section className="mx-auto max-w-6xl px-6 py-8">
+        <h3 className="text-xl font-semibold text-gray-900">
           Shop by category
         </h3>
 
@@ -38,8 +66,14 @@ export default async function Home() {
             </div>
           ))}
         </div>
+      </section>
 
-        <h3 className="mt-12 text-xl font-semibold text-gray-900">
+      {/* Products */}
+      <section
+        id="products"
+        className="mx-auto max-w-6xl px-6 py-10"
+      >
+        <h3 className="text-xl font-semibold text-gray-900">
           Popular products
         </h3>
 
